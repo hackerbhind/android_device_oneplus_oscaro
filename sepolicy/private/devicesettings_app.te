@@ -1,5 +1,5 @@
 # Define the context for devicesettings_app
-type devicesettings_app, app_data_file;
+type devicesettings_app, app_data_file,
 
 # Allow devicesettings_app to find *_service
 allow devicesettings_app {
