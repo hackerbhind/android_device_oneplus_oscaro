@@ -127,11 +127,11 @@ KERNEL_LD := LD=ld.ll
 TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc LLVM=1
 
 # Kernel modules
-BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DEVICE_PATH)/modules.blocklist
-BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
-BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
-BOOT_KERNEL_MODULES := $(strip $(shell cat $(DEVICE_PATH)/modules.include.recovery))
-TARGET_MODULE_ALIASES += wlan.ko:qca_cld3_wlan.ko
+#BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DEVICE_PATH)/modules.blocklist
+#BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load))
+#BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
+#BOOT_KERNEL_MODULES := $(strip $(shell cat $(DEVICE_PATH)/modules.include.recovery))
+#TARGET_MODULE_ALIASES += wlan.ko:qca_cld3_wlan.ko
 
 # Prebuilt Kernel
 #BOARD_KERNEL_BINARIES := kernel
@@ -140,11 +140,11 @@ TARGET_MODULE_ALIASES += wlan.ko:qca_cld3_wlan.ko
 #TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel
 #TARGET_KERNEL_CONFIG := holi_QGKI
 #TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img
-#PRODUCT_COPY_FILES += \
-#    $(DEVICE_PATH)-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
-#    $(DEVICE_PATH)-kernel/kernel:kernel \
-#    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/ramdisk-modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
-#    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/vendor-modules/,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
+    $(DEVICE_PATH)-kernel/kernel:kernel \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/ramdisk-modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/vendor-modules/,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 167772160
