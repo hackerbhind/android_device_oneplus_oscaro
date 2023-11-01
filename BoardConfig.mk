@@ -98,46 +98,46 @@ TARGET_USES_ION := true
 TARGET_DISABLED_UBWC := true
 
 # Kernel
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_BOOT_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_CMDLINE := \
+    androidboot.hardware=qcom \
+    androidboot.memcg=1 \
+    androidboot.usbcontroller=4e00000.dwc3 \
+    cgroup.memory=nokmem,nosocket \
+    loop.max_part=7 \
+    msm_rtb.filter=0x237 \
+    service_locator.enable=1 \
+    swiotlb=0 \
+    pcie_ports=compat \
+    iptable_raw.raw_before_defrag=1 \
+    ip6table_raw.raw_before_defrag=1 \
+    androidboot.init_fatal_reboot_target=recovery \
+    androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DTBO := true
-KERNEL_LD := LD=ld.lld
-
-BOARD_BOOT_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-
-TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc LLVM=1
+BOARD_RAMDISK_USE_LZ4 := true
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/oneplus/sm6375
-
-BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom
-BOARD_KERNEL_CMDLINE += androidboot.memcg=1
-BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=4e00000.dwc3
-BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem,nosocket
-BOARD_KERNEL_CMDLINE += loop.max_part=7
-BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
-BOARD_KERNEL_CMDLINE += service_locator.enable=1
-BOARD_KERNEL_CMDLINE += swiotlb=0
-BOARD_KERNEL_CMDLINE += pcie_ports=compat
-BOARD_KERNEL_CMDLINE += iptable_raw.raw_before_defrag=1
-BOARD_KERNEL_CMDLINE += ip6table_raw.raw_before_defrag=1
-BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+TARGET_KERNEL_CONFIG := vendor/holi-qgki_defconfig
+KERNEL_LD := LD=ld.ll
+TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/linux-x86/dtc/dtc LLVM=1
 
 # Prebuilt Kernel
-BOARD_KERNEL_BINARIES := kernel
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img
-TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_KERNEL_ARCH := arm64
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel
-TARGET_KERNEL_CONFIG := holi_QGKI
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
-    $(DEVICE_PATH)-kernel/kernel:kernel \
-    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/ramdisk-modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
-    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/vendor-modules/,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
+#BOARD_KERNEL_BINARIES := kernel
+#BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img
+#TARGET_KERNEL_ARCH := arm64
+#TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel
+#TARGET_KERNEL_CONFIG := holi_QGKI
+#TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img
+#PRODUCT_COPY_FILES += \
+#    $(DEVICE_PATH)-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
+#    $(DEVICE_PATH)-kernel/kernel:kernel \
+#    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/ramdisk-modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
+#    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/vendor-modules/,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 167772160
