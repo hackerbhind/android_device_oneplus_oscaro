@@ -9,7 +9,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+    <hal format="aidl">
         <name>android.frameworks.schedulerservice</name>
         <version>1.0</version>
         <interface>
