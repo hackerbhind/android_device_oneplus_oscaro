@@ -19,7 +19,6 @@
             <instance>default</instance>
         </interface> 
       </hal>
-    </hal>
     <hal format="aidl" optional="true">
         <name>android.hardware.power</name>
         <version>3</version>
