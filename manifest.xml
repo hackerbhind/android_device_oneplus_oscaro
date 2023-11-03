@@ -9,9 +9,10 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl">
+    <hal format="hidl">
         <name>android.frameworks.schedulerservice</name>
-        <version>1</version>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
         <interface>
             <name>ISchedulingPolicyService</name>
             <instance>default</instance>
