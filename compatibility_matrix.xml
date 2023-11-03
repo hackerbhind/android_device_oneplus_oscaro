@@ -5,14 +5,6 @@
 -->
 <compatibility-matrix version="2.0" type="device">
  <kernel version="5.4.210-qgki"/>
-    <hal format="hidl" optional="false">
-        <name>android.frameworks.schedulerservice</name>
-        <version>1.0</version>
-        <interface>
-            <name>ISchedulingPolicyService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.power</name>
         <version>3.0</version>
