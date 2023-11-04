@@ -1725,5 +1725,4 @@
             <instance>mms/explorer</instance>
         </interface>
     </hal>
-    <kernel target-level="5"/>
 </compatibility-matrix>
